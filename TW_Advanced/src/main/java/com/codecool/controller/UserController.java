@@ -5,6 +5,7 @@ import com.codecool.dao.model.Product;
 import com.codecool.dao.model.User;
 import com.codecool.data.Diary;
 import com.codecool.data.NutrimentsTotalDaily;
+import com.codecool.data.PersonalInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -105,5 +106,17 @@ public class UserController {
     }
 
 
+    @PutMapping("/api/user/update/personalInfo/{email}")
+    public User updatePersonalInfo(@PathVariable String email, @RequestBody PersonalInformation personalInformation){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("email").is(email));
+
+        User user = mongoOps.findOne(query, User.class);
+
+        assert user != null;
+        user.getDiary().setPersonalInformation(personalInformation);
+
+        return userRepository.save(user);
+    }
 
 }
