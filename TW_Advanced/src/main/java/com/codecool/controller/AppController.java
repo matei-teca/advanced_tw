@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AppController {
 
+    // Testing
     @GetMapping("/")
     public String index(){
         return "Salut";
