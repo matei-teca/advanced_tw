@@ -200,14 +200,14 @@ function LoginForm({ setIsLogin, isLogin }) {
                 id="flexCheckDefault"
                 label="Remember me"
               />
-              <a href="!#">Forgot password?</a>
+              <a href="#">Forgot password?</a>
             </div>
 
             <MDBBtn className="mb-4 w-100" type="submit">
               Sign in
             </MDBBtn>
             <p className="text-center">
-              Not a member? <a href="#!">Register</a>
+              Not a member? <a href="#">Register</a>
             </p>
           </MDBValidation>
         </MDBTabsPane>
