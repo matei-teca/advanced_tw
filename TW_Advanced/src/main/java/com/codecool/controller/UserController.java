@@ -67,12 +67,12 @@ public class UserController {
                 = new NutrimentsTotalDaily(productList);
 
         for(Product product : productList){
-            nutrimentsTotalDaily.addCalories(product.getCalories());
-            nutrimentsTotalDaily.addCarbs(product.getCarbs());
-            nutrimentsTotalDaily.addFats(product.getFats());
-            nutrimentsTotalDaily.addSugars(product.getSugars());
-            nutrimentsTotalDaily.addProteins(product.getProteins());
-            nutrimentsTotalDaily.addFiber(product.getFiber());
+            nutrimentsTotalDaily.addKcal(product.getNutriments().getKcal());
+            nutrimentsTotalDaily.addCarbohydrates(product.getNutriments().getCarbohydrates());
+            nutrimentsTotalDaily.addFat(product.getNutriments().getFat());
+            nutrimentsTotalDaily.addSugars(product.getNutriments().getSugars());
+            nutrimentsTotalDaily.addProteins(product.getNutriments().getProteins());
+            nutrimentsTotalDaily.addFiber(product.getNutriments().getFiber());
         }
 
         return nutrimentsTotalDaily;

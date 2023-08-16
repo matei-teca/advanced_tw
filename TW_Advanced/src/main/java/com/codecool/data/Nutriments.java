@@ -1,10 +1,13 @@
 package com.codecool.data;
 
+import lombok.Getter;
+
+@Getter
 public class Nutriments {
-    private int calories;
-    private int carbs;
+    private int kcal;
+    private int carbohydrates;
+    private int fat;
     private int proteins;
-    private int sugars;
-    private int fats;
     private int fiber;
+    private int sugars;
 }
