@@ -10,7 +10,7 @@ export default function CaloriesCalculator({ useremail, informations, setUser })
     height: "",
     weight: "",
     age: "",
-    target: "",
+    fitnessTarget: "",
   });
 
   const onChangeInput = (e) => {
@@ -20,7 +20,7 @@ export default function CaloriesCalculator({ useremail, informations, setUser })
 
   const addInformations = () => {
     const BMR =
-    addInformationsTem.gender === "Mrs"
+    addInformationsTem.gender === "FEMALE"
       ? 655 +
         9.6 * addInformationsTem.weight +
         1.8 * addInformationsTem.height -
@@ -31,31 +31,31 @@ export default function CaloriesCalculator({ useremail, informations, setUser })
         6.8 * addInformationsTem.age;
 
   const ACTIVITYLEVEL =
-    addInformationsTem.activityLevel === "Sedentary"
+    addInformationsTem.activityLevel === "SEDENTARY"
       ? BMR * 1.2
-      : addInformationsTem.activityLevel === "Lightly-active"
+      : addInformationsTem.activityLevel === "LIGHTLY_ACTIVE"
       ? BMR * 1.375
-      : addInformationsTem.activityLevel === "Moderatly-active"
+      : addInformationsTem.activityLevel === "MODERATELY_ACTIVE"
       ? BMR * 1.55
-      : addInformationsTem.activityLevel === "Very-active"
+      : addInformationsTem.activityLevel === "VERY_ACTIVE"
       ? BMR * 1.725
-      : addInformationsTem.activityLevel === "Extra-active"
+      : addInformationsTem.activityLevel === "EXTRA_ACTIVE"
       ? BMR * 1.9
       : 0;
 
   const CALORIES =
-    addInformationsTem.target === "maintain"
+    addInformationsTem.fitnessTarget === "MAINTAIN"
       ? ACTIVITYLEVEL
-      : addInformationsTem.target === "lose"
+      : addInformationsTem.fitnessTarget === "LOSE"
       ? ACTIVITYLEVEL * 0.8
-      : addInformationsTem.target === "gain"
+      : addInformationsTem.fitnessTarget === "GAIN"
       ? ACTIVITYLEVEL * 1.2
       : 0;
 
-    fetch(`http://localhost:3001/api/updateInformations/${useremail}`, {
+    fetch(`http://localhost:3001/api/user/update/personalInfo/${useremail}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({informations: addInformationsTem, calories: Math.floor(CALORIES)}),
+      body: JSON.stringify({personalInformation: addInformationsTem, calories: Math.floor(CALORIES)}),
     }).then(res => res.json()).then(data => setUser(data));
   };
   
@@ -70,9 +70,9 @@ export default function CaloriesCalculator({ useremail, informations, setUser })
           <h1>Complete your details</h1>
           <select id="gender" onChange={onChangeInput}>
             <option></option>
-            <option value="Mr">Mr</option>
-            <option value="Mrs">Mrs</option>
-            <option value="Other">Other</option>
+            <option value="MALE">Mr</option>
+            <option value="FEMALE">Mrs</option>
+            <option value="OTHER">Other</option>
           </select>
           <select
             id="activityLevel"
@@ -82,22 +82,22 @@ export default function CaloriesCalculator({ useremail, informations, setUser })
             }}
           >
             <option>Select one</option>
-            <option value="Sedentary">Sedentary</option>
-            <option value="Lightly-active">Lightly active</option>
-            <option value="Moderatly-active">Moderatly active</option>
-            <option value="Very-active">Very active</option>
-            <option value="Extra-active">Extra active</option>
+            <option value="SEDENTARY">Sedentary</option>
+            <option value="LIGHTLY_ACTIVE">Lightly active</option>
+            <option value="MODERATELY_ACTIVE">Moderatly active</option>
+            <option value="VERY_ACTIVE">Very active</option>
+            <option value="EXTRA_ACTIVE">Extra active</option>
           </select>
           <p>
-            {activityLevel === "Sedentary"
+            {activityLevel === "SEDENTARY"
               ? "Little or no exercise"
-              : activityLevel === "Lightly-active"
+              : activityLevel === "LIGHTLY_ACTIVE"
               ? "Light exercise 1-3 days per week"
-              : activityLevel === "Moderatly-active"
+              : activityLevel === "MODERATELY_ACTIVE"
               ? "Moderate exercise 3-5 days per week"
-              : activityLevel === "Very-active"
+              : activityLevel === "VERY_ACTIVE"
               ? "Hard exercise 6-7 days per week"
-              : activityLevel === "Extra-active"
+              : activityLevel === "EXTRA_ACTIVE"
               ? "Very hard exercise, physical job or training twice a day"
               : "More informations here"}
           </p>
@@ -110,8 +110,8 @@ export default function CaloriesCalculator({ useremail, informations, setUser })
           <select id="target" onChange={onChangeInput}>
             <option>Target</option>
             <option value="maintain">Maintain</option>
-            <option value="lose">Lose</option>
-            <option value="gain">Gain</option>
+            <option value="LOSE">Lose</option>
+            <option value="GAIN">Gain</option>
           </select>
           <div style={{ display: "flex" }} className="my-profile-modal-close">
             <button

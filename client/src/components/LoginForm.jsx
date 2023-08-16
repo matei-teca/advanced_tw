@@ -21,12 +21,13 @@ import Form from "react-bootstrap/Form";
 function LoginForm({ setIsLogin, isLogin }) {
   const [justifyActive, setJustifyActive] = useState(isLogin ? "tab1" : "tab2");
   const [formValue, setFormValue] = useState({
+    firstName: "",
+    lastName: "",
     email: "matei.t@gmail.com",
     password: "mateimatei",
-    fName: "",
-    lName: "",
+    diary: null
   });
-  const { email, password, fName, lName } = formValue;
+  const { firstName, lastName, email, password, diary } = formValue;
   
   const emailRef = useRef(null);
   const fnameRef = useRef(null);
@@ -44,7 +45,7 @@ function LoginForm({ setIsLogin, isLogin }) {
       lnameRef.current.checkValidity() &&
       passwordRef.current.checkValidity()
     ) {
-      fetch("http://localhost:3001/api/user", {
+      fetch("http://localhost:3001/api/user/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formValue),
@@ -266,7 +267,7 @@ function LoginForm({ setIsLogin, isLogin }) {
               label="First Name"
               id="form1"
               type="text"
-              value={fName}
+              value={firstName}
               name="fName"
               ref={fnameRef}
               onChange={onChangeInput}
@@ -279,7 +280,7 @@ function LoginForm({ setIsLogin, isLogin }) {
               label="Last Name"
               id="form1"
               type="text"
-              value={lName}
+              value={lastName}
               name="lName"
               ref={lnameRef}
               onChange={onChangeInput}

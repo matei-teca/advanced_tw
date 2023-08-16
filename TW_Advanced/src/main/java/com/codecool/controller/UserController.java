@@ -5,7 +5,6 @@ import com.codecool.dao.model.Product;
 import com.codecool.dao.model.User;
 import com.codecool.data.Diary;
 import com.codecool.data.NutrimentsTotalDaily;
-import com.codecool.data.PersonalInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -41,7 +40,7 @@ public class UserController {
         return mongoOps.findOne(query, User.class);
     }
 
-    @GetMapping("/api/user/email/{email}")
+    @GetMapping("/api/user/{email}")
     public User getUserByEmail(@PathVariable String email){
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is(email));
@@ -93,10 +92,10 @@ public class UserController {
         }
     }
 
-    @PutMapping("/api/user/addProduct/{id}/{date}")
-    public User addProductToDate(@PathVariable String id,@PathVariable String date, @RequestBody Product product){
+    @PutMapping("/api/user/addProduct/{email}/{date}")
+    public User addProductToDate(@PathVariable String email,@PathVariable String date, @RequestBody Product product){
         Query query = new Query();
-        query.addCriteria(Criteria.where("id").is(id));
+        query.addCriteria(Criteria.where("email").is(email));
 
         User user = mongoOps.findOne(query, User.class);
         assert user != null;
@@ -107,14 +106,15 @@ public class UserController {
 
 
     @PutMapping("/api/user/update/personalInfo/{email}")
-    public User updatePersonalInfo(@PathVariable String email, @RequestBody PersonalInformation personalInformation){
+    public User updatePersonalInfo(@PathVariable String email, @RequestBody PersonalInformationResponse data){
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is(email));
 
         User user = mongoOps.findOne(query, User.class);
 
         assert user != null;
-        user.getDiary().setPersonalInformation(personalInformation);
+        user.getDiary().setPersonalInformation(data.getPersonalInformation());
+        user.setDailyCaloriesTarget(data.getCalories());
 
         return userRepository.save(user);
     }

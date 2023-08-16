@@ -49,8 +49,8 @@ export const searchByBarcode = (barcode, setSearchNames, setProduct, fdcId) => {
         console.log(1, data);
         // setSearchNames(null);
         setProduct({
-          barcode: data.fdcId,
           name: data.description,
+          barcode: data.fdcId,
           nutriments: {
             kcal: getNut(data, "Energy"),
             carbohydrates: getNut(data, "Carbohydrate, by difference"),
@@ -71,8 +71,8 @@ export const searchByBarcode = (barcode, setSearchNames, setProduct, fdcId) => {
       .then((data) => {
         setSearchNames(null);
         console.log({
-          barcode: data.code,
           name: data.product["product_name"],
+          barcode: data.code,
           nutriments: {
             kcal: data.product.nutriments["energy-kcal"],
             carbohydrates: data.product.nutriments.carbohydrates,
@@ -84,8 +84,8 @@ export const searchByBarcode = (barcode, setSearchNames, setProduct, fdcId) => {
         });
         data["status_verbose"] === "product found"
           ? setProduct({
-              barcode: data.code,
               name: data.product["product_name"],
+              barcode: data.code,
               nutriments: {
                 kcal: data.product.nutriments["energy-kcal"],
                 carbohydrates: data.product.nutriments.carbohydrates,
@@ -104,7 +104,7 @@ export const searchByBarcode = (barcode, setSearchNames, setProduct, fdcId) => {
 export const addingProduct = (product, useremail, grams, setUser, customDay) => {
   let today = new Date().toISOString().substring(0, 10);
 
-  fetch(`http://localhost:3001/api/user/${customDay || today}/${useremail}/${grams}`, {
+  fetch(`http://localhost:3001/api/user/${useremail}/${customDay || today}/${grams}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     mode: "cors",

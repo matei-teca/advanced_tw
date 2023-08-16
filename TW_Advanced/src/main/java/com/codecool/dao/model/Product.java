@@ -1,5 +1,6 @@
 package com.codecool.dao.model;
 
+import com.codecool.data.Nutriments;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,10 +16,5 @@ public class Product {
     private String id;
     private String name;
     private final String barCode;
-    private int calories;
-    private int carbs;
-    private int proteins;
-    private int sugars;
-    private int fats;
-    private int fiber;
+    private Nutriments nutriments;
 }

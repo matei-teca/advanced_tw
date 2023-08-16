@@ -10,6 +10,7 @@ public class PersonalInformation {
     private int age;
     private FitnessTarget fitnessTarget;
 
+
     public PersonalInformation() {
         this.gender = null;
         this.activityLevel = null;
