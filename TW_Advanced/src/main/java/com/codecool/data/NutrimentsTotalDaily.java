@@ -3,6 +3,7 @@ package com.codecool.data;
 import com.codecool.dao.model.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public class NutrimentsTotalDaily {
 
@@ -12,9 +13,9 @@ public class NutrimentsTotalDaily {
     private int proteins = 0;
     private int fiber = 0;
     private int sugars = 0;
-    private final List<Product> productsList;
+    private final Map<Product, Integer> productsList;
 
-    public NutrimentsTotalDaily(List<Product> productsList) {
+    public NutrimentsTotalDaily(Map<Product, Integer> productsList) {
         this.productsList = productsList;
     }
 
@@ -42,33 +43,5 @@ public class NutrimentsTotalDaily {
         this.sugars += sugars;
     }
 
-    //    public void addCalories(int calories) {
-//        this.calories += calories;
-//    }
-//
-//
-//    public void addCarbs(int carbs) {
-//        this.carbs += carbs;
-//    }
-//
-//
-//    public void addProteins(int proteins) {
-//        this.proteins += proteins;
-//    }
-//
-//
-//    public void addSugars(int sugars) {
-//        this.sugars += sugars;
-//    }
-//
-//
-//    public void addFats(int fats) {
-//        this.fats += fats;
-//    }
-//
-//
-//    public void addFiber(int fiber) {
-//        this.fiber += fiber;
-//    }
 
 }

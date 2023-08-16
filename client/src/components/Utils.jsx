@@ -104,7 +104,7 @@ export const searchByBarcode = (barcode, setSearchNames, setProduct, fdcId) => {
 export const addingProduct = (product, useremail, grams, setUser, customDay) => {
   let today = new Date().toISOString().substring(0, 10);
 
-  fetch(`http://localhost:3001/api/user/${useremail}/${customDay || today}/${grams}`, {
+  fetch(`http://localhost:3001/api/user/addProduct/${useremail}/${customDay || today}/${grams}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     mode: "cors",

@@ -12,11 +12,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
 public class UserController {
-
 
     private final UserRepository userRepository;
     private final MongoOperations mongoOps;
@@ -59,20 +59,21 @@ public class UserController {
 
         User user = mongoOps.findOne(query, User.class);
 
+        assert user != null;
         Diary diary = user.getDiary();
 
-        List<Product> productList = diary.getData().get(day);
+        Map<Product, Integer> productList = diary.getData().get(day);
 
         NutrimentsTotalDaily nutrimentsTotalDaily
                 = new NutrimentsTotalDaily(productList);
 
-        for(Product product : productList){
-            nutrimentsTotalDaily.addKcal(product.getNutriments().getKcal());
-            nutrimentsTotalDaily.addCarbohydrates(product.getNutriments().getCarbohydrates());
-            nutrimentsTotalDaily.addFat(product.getNutriments().getFat());
-            nutrimentsTotalDaily.addSugars(product.getNutriments().getSugars());
-            nutrimentsTotalDaily.addProteins(product.getNutriments().getProteins());
-            nutrimentsTotalDaily.addFiber(product.getNutriments().getFiber());
+        for(Map.Entry<Product, Integer> product : productList.entrySet()){
+            nutrimentsTotalDaily.addKcal(product.getKey().getNutriments().getKcal());
+            nutrimentsTotalDaily.addCarbohydrates(product.getKey().getNutriments().getCarbohydrates());
+            nutrimentsTotalDaily.addFat(product.getKey().getNutriments().getFat());
+            nutrimentsTotalDaily.addSugars(product.getKey().getNutriments().getSugars());
+            nutrimentsTotalDaily.addProteins(product.getKey().getNutriments().getProteins());
+            nutrimentsTotalDaily.addFiber(product.getKey().getNutriments().getFiber());
         }
 
         return nutrimentsTotalDaily;
@@ -92,18 +93,19 @@ public class UserController {
         }
     }
 
-    @PutMapping("/api/user/addProduct/{email}/{date}")
-    public User addProductToDate(@PathVariable String email,@PathVariable String date, @RequestBody Product product){
+    @PutMapping("/api/user/addProduct/{email}/{date}/{grams}")
+    public User addProductToDate(
+            @PathVariable String email,@PathVariable String date, @PathVariable int grams,
+            @RequestBody Product product){
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is(email));
 
         User user = mongoOps.findOne(query, User.class);
         assert user != null;
-        user.getDiary().addProductToDate(date, product);
+        user.getDiary().addProductToDate(date, product, grams);
 
         return userRepository.save(user);
     }
-
 
     @PutMapping("/api/user/update/personalInfo/{email}")
     public User updatePersonalInfo(@PathVariable String email, @RequestBody PersonalInformationResponse data){

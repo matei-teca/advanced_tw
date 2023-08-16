@@ -8,16 +8,15 @@ import java.util.*;
 
 public class Diary {
 
-    private Map<String, List<Product>> data;
+    private Map<String, Map<Product, Integer>> data;
     private PersonalInformation personalInformation;
-
 
     public Diary() {
         this.data = new HashMap<>();
         this.personalInformation = new PersonalInformation();
     }
 
-    public void setData(Map<String, List<Product>> data) {
+    public void setData(Map<String, Map<Product, Integer>> data) {
         this.data = data;
     }
 
@@ -25,7 +24,7 @@ public class Diary {
         this.personalInformation = personalInformation;
     }
 
-    public Map<String, List<Product>> getData(){
+    public Map<String, Map<Product, Integer>> getData(){
         return data;
     }
 
@@ -33,21 +32,22 @@ public class Diary {
         return personalInformation;
     }
 
-    public void addDate(Product product){
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        data.put(simpleDateFormat.format(LocalDate.now()), new ArrayList<>(List.of(product)));
-    }
-
-    public void addProductToDate(String date, Product product){
-        if(data.get(date) == null) data.put(date, List.of(product));
-        else data.get(date).add(product);
+    public void addProductToDate(String date, Product product, int grams){
+        if(data.get(date) == null) data.put(date, Map.of(product, grams));
+        else data.get(date).put(product, grams);
 
     }
 
-    public List<Product> getProductsForDay(String date){
+    //    public void addDate(Product product){
+//
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        data.put(simpleDateFormat.format(LocalDate.now()), new ArrayList<>(List.of(product)));
+//    }
 
-        return data.get(date);
-    }
+//    public List<Product> getProductsForDay(String date){
+//
+//        return data.get(date);
+//    }
+
 }
