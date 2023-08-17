@@ -302,8 +302,22 @@ progress {
 } */
 
 .carousel--container{
-  width: 40vw !important;
+  width: 42vw !important;
   height: 30vh !important;
   margin-bottom: 490px
+}
+
+.carousel-navbar1--container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 150px;
+}
+
+.carousel-navbar2--container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15%;
 }
 
