@@ -29,8 +29,8 @@ export default function WelcomeCard({ searchNames }) {
             alt='...'
           >
             <div style={{ marginBottom:"20%", color: "white"}}>
-              <h5>Welcome</h5>
-              <p>          
+              <h4>Welcome to Nutri Tracker!</h4>
+              <p className = "home-page--text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
               porttitor nunc. Integer condimentum, justo nec bibendum euismod,
               orci massa suscipit purus, in placerat lectus lacus a ligula. Donec
@@ -38,13 +38,9 @@ export default function WelcomeCard({ searchNames }) {
               pharetra metus tellus vel elit.
               </p> 
               
-              <p>Sed ultrices, nunc nec tincidunt
+              <p className = "home-page--text">Sed ultrices, nunc nec tincidunt
               varius, sapien nibh facilisis odio, elementum faucibus augue nisi
-              vel massa. Ut tempus vitae enim eu congue. Vivamus sodales, orci ac
-              condimentum aliquet, magna sapien eleifend orci, vel suscipit lectus
-              risus pellentesque neque. Ut velit augue, commodo non scelerisque
-              consectetur, tempus id diam. Suspendisse sed nulla in ante fermentum
-              elementum quis non libero.
+              vel massa. Ut tempus vitae enim eu congue.
               </p>
             </div>
 
@@ -62,7 +58,7 @@ export default function WelcomeCard({ searchNames }) {
                   <CarouselNavbar1 />
               </div>
 
-              <div style={{ marginBottom:"-14px"}}>
+              <div style={{ marginBottom:"-9px"}}>
               <h5>Explore any products for your diet</h5>
               </div>
 
@@ -76,13 +72,11 @@ export default function WelcomeCard({ searchNames }) {
             alt='...'
           >
               <div style={{ marginBottom:"55%"}}>
-                  <h5>Login or Sign Up!</h5>
-                  <p>
+                  <h5 style ={{marginBottom: "-30px"}}>Login or Sign Up!</h5>
+                  <p className = "home-page--text">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
                       porttitor nunc. Integer condimentum, justo nec bibendum euismod,
-                      orci massa suscipit purus, in placerat lectus lacus a ligula. Donec
-                      sodales, felis nec semper sagittis, purus neque tempor nisl, ac
-                      pharetra metus tellus vel elit.
+                      orci massa suscipit purus, in placerat lectus lacus a ligula.
                   </p>
 
                   <div className="carousel-navbar2--container">

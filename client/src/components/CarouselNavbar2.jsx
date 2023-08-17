@@ -75,10 +75,10 @@ export default function CarouselNavbar2(props) {
                                 <>
                                     <Button
                                         variant="light"
-                                        style={{height:"10vh", width: "15vw", marginLeft:"-8vw"}}
+                                        style={{height:"10vh", width: "15vw", marginLeft:"-8vw", fontSize: "13.5px"}}
                                         onClick={handleSignUpClick}
                                     >
-                                        Begin!
+                                        Start your journey!
                                     </Button>
                                 </>
                             </div>
