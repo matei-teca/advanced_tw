@@ -15,7 +15,7 @@ export default function ProgressList() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:3001/api/user/products/${user.email}/${displayCustomDay || today}`
+      `http://localhost:8080/api/user/products/${user.email}/${displayCustomDay || today}`
     )
       .then((res) => res.json())
       .then((data) => {setTotal(data);console.log(data)});

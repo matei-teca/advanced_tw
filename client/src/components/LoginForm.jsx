@@ -45,7 +45,7 @@ function LoginForm({ setIsLogin, isLogin }) {
       lnameRef.current.checkValidity() &&
       passwordRef.current.checkValidity()
     ) {
-      fetch("http://localhost:3001/api/user/add", {
+      fetch("http://localhost:8080/api/user/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formValue),
@@ -59,7 +59,7 @@ function LoginForm({ setIsLogin, isLogin }) {
   };
 
   const handleLogInSubmit = () => {
-    fetch(`http://localhost:3001/api/user/${email}`)
+    fetch(`http://localhost:8080/api/user/email/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setUser(() => data);

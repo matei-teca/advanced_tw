@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-
+@CrossOrigin(origins = "http://localhost:5174")
 @RestController
 public class UserController {
 
@@ -40,7 +40,7 @@ public class UserController {
         return mongoOps.findOne(query, User.class);
     }
 
-    @GetMapping("/api/user/{email}")
+    @GetMapping("/api/user/email/{email}")
     public User getUserByEmail(@PathVariable String email){
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is(email));

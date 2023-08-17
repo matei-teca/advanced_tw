@@ -52,7 +52,7 @@ export default function CaloriesCalculator({ useremail, informations, setUser })
       ? ACTIVITYLEVEL * 1.2
       : 0;
 
-    fetch(`http://localhost:3001/api/user/update/personalInfo/${useremail}`, {
+    fetch(`http://localhost:8080/api/user/update/personalInfo/${useremail}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({personalInformation: addInformationsTem, calories: Math.floor(CALORIES)}),
