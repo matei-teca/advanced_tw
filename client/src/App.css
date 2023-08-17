@@ -304,24 +304,25 @@ progress {
 .carousel--container{
   width: 42vw !important;
   height: 30vh !important;
-  margin-bottom: 490px
+  margin-bottom: 67vh;
+  margin-left: 2vw;
 }
 
 .carousel-navbar1--container{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 150px;
+  margin-bottom: 21vh;
 }
 
 .carousel-navbar2--container{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15%;
+  margin-top: 10vh;
 }
 
 .home-page--text{
   font-size: 17px;
-  margin-block: 50px;
+  margin-block: 7vh;
 }
